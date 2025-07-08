@@ -52,7 +52,7 @@ function wrongAnswer(index, feedback = "Incorrect!") {
 }
 
 function displayQ4Choices() {
-    let q4ChoicesArray = ["North Dakota", "South Dakota", "Kansas", "Nebraska"];
+    let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delaware"];
     q4ChoicesArray = _.shuffle(q4ChoicesArray);
 
     let choicesHTML = "";
@@ -68,54 +68,41 @@ function displayQ4Choices() {
     document.querySelector("#q4Choices").innerHTML = choicesHTML;
 }
 
+// Grading logic
 function gradeQuiz() {
-    console.log("Grading quiz...");
-    document.querySelector("#validationFdbk").innerHTML = "";
-
-    if (!isFormValid()) {
-        return;
-    }
-
-    // Reset score
-    score = 0;
-
-    // Get responses and grade each question
-    // In the gradeQuiz function:
-
-// Question 1 - Rio Grande
+    // Question 1 - Sacramento
     let q1Response = document.querySelector("#q1").value.trim().toLowerCase();
-    if (q1Response === "rio grande" || q1Response === "rio grande river") {
+    if (q1Response === "sacramento") {
         rightAnswer(1);
     } else {
-        wrongAnswer(1, "Incorrect! The Rio Grande forms the border.");
+        wrongAnswer(1, "Incorrect! The capital is Sacramento.");
     }
 
-// Question 2 - Lake Michigan
+    // Question 2 - Missouri (value="mo")
     let q2Response = document.querySelector("#q2").value;
-    if (q2Response === "michigan") {
+    if (q2Response === "mo") {
         rightAnswer(2);
     } else {
-        wrongAnswer(2, "Incorrect! Lake Michigan is entirely within the US.");
+        wrongAnswer(2, "Incorrect! The Missouri River is the longest.");
     }
 
-// Question 3 - Gulf States (AL, LA, MS)
-    let q3Correct = document.querySelector("#alabama").checked &&
-        document.querySelector("#louisiana").checked &&
-        document.querySelector("#mississippi").checked &&
-        !document.querySelector("#georgia").checked;
-    if (q3Correct) {
+    // Question 3 - Jefferson + Roosevelt only
+    if (document.querySelector("#Jefferson").checked &&
+        document.querySelector("#Roosevelt").checked &&
+        !document.querySelector("#Jackson").checked &&
+        !document.querySelector("#Franklin").checked) {
         rightAnswer(3);
     } else {
-        wrongAnswer(3, "Incorrect! Alabama, Louisiana, and Mississippi border the Gulf.");
+        wrongAnswer(3, "Incorrect! Only Jefferson and Roosevelt are on Mount Rushmore.");
     }
 
-// Question 4 - North Dakota (randomized)
+    // Question 4 - Rhode Island
     let q4Response = document.querySelector("input[name='q4']:checked") ?
         document.querySelector("input[name='q4']:checked").value : "";
-    if (q4Response === "North Dakota") {
+    if (q4Response === "Rhode Island") {
         rightAnswer(4);
     } else {
-        wrongAnswer(4, "Incorrect! The geographic center is in North Dakota near the town of Rugby.");
+        wrongAnswer(4, "Incorrect! Rhode Island is the smallest state.");
     }
 
 // Question 5 - 4 time zones
