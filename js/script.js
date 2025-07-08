@@ -80,87 +80,91 @@ function gradeQuiz() {
     score = 0;
 
     // Get responses and grade each question
-    // Question 1
+    // In the gradeQuiz function:
+
+// Question 1 - Rio Grande
     let q1Response = document.querySelector("#q1").value.trim().toLowerCase();
-    if (q1Response === "sacramento") {
+    if (q1Response === "rio grande" || q1Response === "rio grande river") {
         rightAnswer(1);
     } else {
-        wrongAnswer(1);
+        wrongAnswer(1, "Incorrect! The Rio Grande forms the border.");
     }
 
-    // Question 2
+// Question 2 - Lake Michigan
     let q2Response = document.querySelector("#q2").value;
-    if (q2Response === "mo") {
+    if (q2Response === "michigan") {
         rightAnswer(2);
     } else {
-        wrongAnswer(2);
+        wrongAnswer(2, "Incorrect! Lake Michigan is entirely within the US.");
     }
 
-    // Question 3
-    if (document.querySelector("#Jefferson").checked &&
-        document.querySelector("#Roosevelt").checked &&
-        !document.querySelector("#Jackson").checked &&
-        !document.querySelector("#Franklin").checked) {
+// Question 3 - Gulf States (AL, LA, MS)
+    let q3Correct = document.querySelector("#alabama").checked &&
+        document.querySelector("#louisiana").checked &&
+        document.querySelector("#mississippi").checked &&
+        !document.querySelector("#georgia").checked;
+    if (q3Correct) {
         rightAnswer(3);
     } else {
-        wrongAnswer(3, "Incorrect! Only Jefferson and Roosevelt are on Mount Rushmore.");
+        wrongAnswer(3, "Incorrect! Alabama, Louisiana, and Mississippi border the Gulf.");
     }
 
-    // Question 4
-    let q4Response = document.querySelector("input[name='q4']:checked").value;
-    if (q4Response === "Rhode Island") {
+// Question 4 - North Dakota (randomized)
+    let q4Response = document.querySelector("input[name='q4']:checked") ?
+        document.querySelector("input[name='q4']:checked").value : "";
+    if (q4Response === "North Dakota") {
         rightAnswer(4);
     } else {
-        wrongAnswer(4);
+        wrongAnswer(4, "Incorrect! The geographic center is in North Dakota.");
     }
 
-    // Question 5
+// Question 5 - 4 time zones
     let q5Response = document.querySelector("#q5").value;
-    if (q5Response === "50") {
+    if (q5Response === "4") {
         rightAnswer(5);
     } else {
-        wrongAnswer(5);
+        wrongAnswer(5, "Incorrect! There are 4 time zones in the contiguous US.");
     }
 
-    // Question 6
+// Question 6 - Alaska glaciers (~5%)
     let q6Response = document.querySelector("#q6").value;
-    if (q6Response === "12") {
+    if (q6Response >= "4" && q6Response <= "6") {
         rightAnswer(6);
     } else {
-        wrongAnswer(6, `Incorrect! The correct answer is about 12%. Your guess was ${q6Response}%.`);
+        wrongAnswer(6, `Incorrect! About 5% of Alaska is glaciated. Your guess was ${q6Response}%.`);
     }
 
-    // Question 7
+// Question 7 - Appalachian Mountains
     let q7Response = document.querySelector("input[name='q7']:checked") ?
         document.querySelector("input[name='q7']:checked").value : "";
-    if (q7Response === "PA") {
+    if (q7Response === "Appalachian") {
         rightAnswer(7);
     } else {
-        wrongAnswer(7, "Incorrect! The correct abbreviation is PA.");
+        wrongAnswer(7, "Incorrect! The Appalachian Trail runs through the Appalachian Mountains.");
     }
 
-    // Question 8
+// Question 8 - Alaska statehood (1959)
     let q8Response = document.querySelector("#q8").value;
-    if (q8Response && new Date(q8Response).getFullYear() === 1776) {
+    if (q8Response && new Date(q8Response).getFullYear() === 1959) {
         rightAnswer(8);
     } else {
-        wrongAnswer(8, "Incorrect! The Declaration was signed in 1776.");
+        wrongAnswer(8, "Incorrect! Alaska became a state in 1959.");
     }
 
-    // Question 9
+// Question 9 - USGS email (@usgs.gov)
     let q9Response = document.querySelector("#q9").value.toLowerCase();
-    if (q9Response.endsWith(".gov")) {
+    if (q9Response.endsWith("@usgs.gov")) {
         rightAnswer(9);
     } else {
-        wrongAnswer(9, "Incorrect! US government emails end with .gov");
+        wrongAnswer(9, "Incorrect! USGS emails end with @usgs.gov");
     }
 
-    // Question 10
+// Question 10 - Topo maps URL (https://www.usgs.gov)
     let q10Response = document.querySelector("#q10").value.toLowerCase();
-    if (q10Response === "https://www.nps.gov" || q10Response === "http://www.nps.gov") {
+    if (q10Response === "https://www.usgs.gov" || q10Response === "http://www.usgs.gov") {
         rightAnswer(10);
     } else {
-        wrongAnswer(10, "Incorrect! The correct URL is https://www.nps.gov");
+        wrongAnswer(10, "Incorrect! The correct URL is https://www.usgs.gov");
     }
 
     // Update attempts
