@@ -180,7 +180,7 @@ function gradeQuiz() {
     // Display congratulatory message if score is above 80
     if (score >= 80) {
         document.querySelector("#congratsMessage").innerHTML =
-            "🎉 Congratulations! Great job on the quiz! 🎉";
+            "Congratulations! Great job on the quiz!";
         document.querySelector("#congratsMessage").className = "h4 text-success";
     } else {
         document.querySelector("#congratsMessage").innerHTML = "";
