@@ -1,6 +1,6 @@
 // Event Listeners
 document.querySelector("button").addEventListener("click", gradeQuiz);
-document.querySelector("#q6").addEventListener("input", function() {
+document.querySelector("#q6").addEventListener("input", function () {
     document.querySelector("#q6Value").value = this.value + "%";
 });
 
@@ -52,7 +52,7 @@ function wrongAnswer(index, feedback = "Incorrect!") {
 }
 
 function displayQ4Choices() {
-    let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delaware"];
+    let q4ChoicesArray = ["North Dakota", "South Dakota", "Kansas", "Nebraska"];
     q4ChoicesArray = _.shuffle(q4ChoicesArray);
 
     let choicesHTML = "";
@@ -60,9 +60,9 @@ function displayQ4Choices() {
         let state = q4ChoicesArray[i];
         let id = state.replace(/\s+/g, '').toLowerCase();
         choicesHTML += `
-            <div>
-                <input type="radio" name="q4" id="${id}" value="${state}">
-                <label for="${id}"> ${state}</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q4" id="${id}" value="${state}">
+                <label class="form-check-label" for="${id}">${state}</label>
             </div>`;
     }
     document.querySelector("#q4Choices").innerHTML = choicesHTML;
@@ -115,7 +115,7 @@ function gradeQuiz() {
     if (q4Response === "North Dakota") {
         rightAnswer(4);
     } else {
-        wrongAnswer(4, "Incorrect! The geographic center is in North Dakota.");
+        wrongAnswer(4, "Incorrect! The geographic center is in North Dakota near the town of Rugby.");
     }
 
 // Question 5 - 4 time zones
